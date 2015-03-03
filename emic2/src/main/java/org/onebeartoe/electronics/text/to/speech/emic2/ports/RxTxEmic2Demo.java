@@ -1,5 +1,5 @@
 
-package org.onebeartoe.electronics.emic2;
+package org.onebeartoe.electronics.text.to.speech.emic2.ports;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

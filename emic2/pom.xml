@@ -69,5 +69,5 @@
             </plugin>
         </plugins>            
     </build>
-    <name>onebeartoe-emic2</name>
+    <name>onebeartoe-text-to-speech-emic2-raspberry-pi</name>
 </project>
