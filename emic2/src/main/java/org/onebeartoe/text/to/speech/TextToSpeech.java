@@ -6,7 +6,7 @@ package org.onebeartoe.text.to.speech;
  */
 public interface TextToSpeech 
 {
-    void speak(String text);
+    void demoMessage(int id);
     
     void currentTime();
     
@@ -17,6 +17,8 @@ public interface TextToSpeech
     void setSpeakingRate(int rate);
     
     void setVoice(int id);
+    
+    void speak(String text);
     
     void stop();
 }

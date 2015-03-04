@@ -50,7 +50,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.onebeartoe.electronics.emic2.Pi4JEmic2Demo</mainClass>
+                            <mainClass>org.onebeartoe.electronics.text.to.speech.emic2.ports.OoPi4JEmic2Demo</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

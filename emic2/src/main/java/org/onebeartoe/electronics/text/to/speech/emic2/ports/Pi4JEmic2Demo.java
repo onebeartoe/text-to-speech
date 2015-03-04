@@ -1,3 +1,4 @@
+
 package org.onebeartoe.electronics.text.to.speech.emic2.ports;
 
 import com.pi4j.io.serial.Serial;
@@ -28,6 +29,12 @@ public class Pi4JEmic2Demo
 
     private Serial serial;
 
+    /**
+     * This method has a bunch of stops because I could not get the a proper 
+     * response from the Emic2 device.  I got it working, but am not sure if 
+     * it had something to do with 
+     * ignoring the initial ':' from the device.
+     */
     public void initialize()
     {
         try
