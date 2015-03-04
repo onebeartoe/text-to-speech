@@ -21,17 +21,14 @@ public class OoPi4JEmic2Demo
 
     public static void main(String[] args) throws Exception
     {
-        System.out.println("Starting...");
+        System.out.println("begin run...");
         
         main = new Pi4JEmic2();
-                
-//        main.demoMessage(35254);
         Thread.sleep(1000);
         
         playAudio();
         
-        Thread.sleep(3000);
-        
+        Thread.sleep(3000);        
 //TODO: uncomment the body of this method
         textToSpeach();
         
@@ -59,12 +56,14 @@ public class OoPi4JEmic2Demo
     {
         System.out.println("playing some audio");
 
-        main.speak(null);
+        String greetingAndIntro = "Hello. My name is the Emic 2 Text-to-Speech module. I would like to sing you a song.";
+        main.speak(greetingAndIntro);
 
         Thread.sleep(500);
 
         // Sing a song
-        main.demoMessage(3525);
+//TODO: chage the 1 to a constant        
+        main.demoMessage(1);
     }
 
 //TODO: Uncomment the body of this method    

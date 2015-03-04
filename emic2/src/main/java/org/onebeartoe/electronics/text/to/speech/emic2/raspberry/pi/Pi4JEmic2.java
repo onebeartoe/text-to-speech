@@ -81,7 +81,7 @@ public class Pi4JEmic2 implements TextToSpeech
     {
         // Speak some text
         serial.write( "S".getBytes() );
-        serial.write("Hello. My name is the Emic 2 Text-to-Speech module. I would like to sing you a song.".getBytes());  // Send the desired string to convert to speech
+        serial.write(text.getBytes());
         serial.write( "\n".getBytes() );
 
         System.out.println("done playing audio");
@@ -119,11 +119,17 @@ public class Pi4JEmic2 implements TextToSpeech
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Sends a demo message command to the Emic2
+     * The command is something like: 'D1\n'
+     * @param id 
+     */
     @Override
     public void demoMessage(int id) 
     {
         System.out.println("singing song");
-        serial.write("D1\n".getBytes());
+        String command = "D" + id + "\n";
+        serial.write(command.getBytes());
         System.out.println("singing song done");
         
         while (serial.read() != ':');
