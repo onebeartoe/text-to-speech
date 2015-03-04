@@ -1,7 +1,6 @@
 
 package org.onebeartoe.electronics.text.to.speech.emic2.ports;
 
-import java.io.IOException;
 import org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi.Pi4JEmic2;
 import org.onebeartoe.text.to.speech.TextToSpeech;
 
@@ -26,11 +25,19 @@ public class OoPi4JEmic2Demo
         main = new Pi4JEmic2();
         Thread.sleep(1000);
         
-        playAudio();
+        System.out.println("playing some audio");
+
+        String greetingAndIntro = "Hello. My name is the Emic 2 Text-to-Speech module. I would like to sing you a song.";
+        main.speak(greetingAndIntro);
+
+        Thread.sleep(500);
+
+        // Sing a song
+//TODO: chage the 1 to a constant        
+        main.demoMessage(1);
         
-        Thread.sleep(3000);        
-//TODO: uncomment the body of this method
-        textToSpeach();
+        Thread.sleep(2000);
+        main.speak("Thanks for listening.");
         
         Thread t = new Thread()
         {
@@ -50,36 +57,5 @@ public class OoPi4JEmic2Demo
         };
         t.start();
         System.out.println("Started");
-    }
-
-    private static void playAudio() throws IOException, InterruptedException
-    {
-        System.out.println("playing some audio");
-
-        String greetingAndIntro = "Hello. My name is the Emic 2 Text-to-Speech module. I would like to sing you a song.";
-        main.speak(greetingAndIntro);
-
-        Thread.sleep(500);
-
-        // Sing a song
-//TODO: chage the 1 to a constant        
-        main.demoMessage(1);
-    }
-
-//TODO: Uncomment the body of this method    
-    public static void textToSpeach()
-    {
-        System.out.println("text to speech");
-
-        // Speak some text
-//        serial.write( "S".getBytes() );
-//        serial.write("This is the text to speach sample.".getBytes());  // Send the desired string to convert to speech
-//        serial.write( "\n".getBytes() );
-//
-//        System.out.println("text to speech done");
-//
-//        while (serial.read() != ':');   // Wait here until the Emic 2 responds with a ":" indicating it's ready to accept the next command        
-        
-        System.out.println("leaving text to speech");
     }
 }
