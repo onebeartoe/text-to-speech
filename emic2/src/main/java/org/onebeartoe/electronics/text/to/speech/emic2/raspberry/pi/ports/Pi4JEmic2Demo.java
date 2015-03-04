@@ -1,5 +1,5 @@
 
-package org.onebeartoe.electronics.text.to.speech.emic2.ports;
+package org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi.ports;
 
 import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;

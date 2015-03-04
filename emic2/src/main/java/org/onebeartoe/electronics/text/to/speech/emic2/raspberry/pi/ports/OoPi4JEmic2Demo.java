@@ -1,5 +1,5 @@
 
-package org.onebeartoe.electronics.text.to.speech.emic2.ports;
+package org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi.ports;
 
 import org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi.Pi4JEmic2;
 import org.onebeartoe.text.to.speech.TextToSpeech;

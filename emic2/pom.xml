@@ -21,8 +21,10 @@
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-core</artifactId>
             <version>0.0.5</version>
-            <exclusions>
+            
             <!-- remove the .so files -->
+            <exclusions>
+            
                 <exclusion>
                   <groupId>com.pi4j</groupId>
                   <artifactId>pi4j-native</artifactId>
