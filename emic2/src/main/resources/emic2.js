@@ -1,4 +1,34 @@
 
+function basicCommand(command)
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+        logServerResponse(xmlhttp);
+    };
+    
+    var url = "/" + command;
+    
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("&p=3");    
+}
+
+function demoMessage(id)
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+        logServerResponse(xmlhttp);
+    };
+    
+    var url = "/demo/" + id;
+    
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("&p=3");
+}
+
 function hideElement(id)
 {
     var element = document.getElementById(id);
@@ -28,11 +58,27 @@ function logServerResponse(xmlhttp)
     }
 }
 
+function setVoice(id)
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+        logServerResponse(xmlhttp);
+    };
+    
+    var url = "/voice/" + id;
+    
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("&p=3");
+}
+
 function showBuiltInControls()
 {
     hideElement('onTheFlyControls');
+    hideElement('settingsControls');
     
-    showElement('songListControls');
+    showElement('demoMessageControls');
 }
 
 function showElement(id)
@@ -41,11 +87,20 @@ function showElement(id)
     element.style.display = 'block';
 }
 
-function showOnTheFlyControls()
+function showFreeFromControls()
 {
-    hideElement('songListControls');
+    hideElement('demoMessageControls');
+    hideElement('settingsControls');
     
     showElement('onTheFlyControls');
+}
+
+function showSettingsControls()
+{
+    hideElement('demoMessageControls');
+    hideElement('onTheFlyControls');
+    
+    showElement('settingsControls');
 }
 
 function speak(text)
@@ -61,4 +116,11 @@ function speak(text)
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("&p=3");    
+}
+
+function stopPlayback()
+{
+    var command = "stop";
+    
+    basicCommand(command);
 }

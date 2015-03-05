@@ -8,11 +8,13 @@ public interface TextToSpeech
 {
     void demoMessage(int id);
     
-    void currentTime();
+    String currentTime();
     
     void pause();
     
     void resume();
+    
+    void setLanguage(int id);
     
     void setSpeakingRate(int rate);
     

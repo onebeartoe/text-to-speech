@@ -5,6 +5,7 @@ import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;
 import com.pi4j.io.serial.SerialDataListener;
 import com.pi4j.io.serial.SerialFactory;
+import java.util.Calendar;
 import org.onebeartoe.system.Sleeper;
 import org.onebeartoe.text.to.speech.TextToSpeech;
 
@@ -90,8 +91,32 @@ public class Pi4JEmic2 implements TextToSpeech
     }
 
     @Override
-    public void currentTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String currentTime() 
+    {
+        Calendar now = Calendar.getInstance();
+        
+        int hour = now.get(Calendar.HOUR);
+        
+        int minute = now.get(Calendar.MINUTE);
+        
+        String spokenMeridian = "what the";
+        int meridian = now.get(Calendar.AM_PM);
+        if(meridian == Calendar.AM)
+        {
+            spokenMeridian = "A M";
+        }
+        else if(meridian == Calendar.PM)
+        {
+            spokenMeridian = "P M";
+        }
+
+        String text = "The time is now: " + hour + " " + minute + " " + spokenMeridian;
+        
+        System.out.println("speaking date: " + text);
+        
+        speak(text);
+        
+        return text;
     }
 
     @Override
@@ -104,19 +129,76 @@ public class Pi4JEmic2 implements TextToSpeech
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * This method sends the caller's message to the Emic2 device.
+     * 
+     * It takes care of sending the '\n' end-of-command character, if it is not 
+     * present.
+     * 
+     * It also consumes the Emic2's response character, '\n'.
+     * 
+     * For valid commands see the documentation: http://www.parallax.com/sites/default/files/downloads/30016-Emic-2-Text-To-Speech-Documentation-v1.1.pdf
+     * 
+     * @param message The message to send the Emic2 device.
+     */
+    private void sendCommand(String command)
+    {
+        System.out.println("sending command: " + command);
+        
+        String commandTerminator = "\n";
+        
+        if(command.endsWith(commandTerminator))
+        {
+            System.out.println("The command terminator was found, but not needed.");
+        }
+        else
+        {
+            command += commandTerminator;
+        }
+        
+        serial.write(command.getBytes());
+        
+        System.out.println("sending command done: " + command);
+        
+        while (serial.read() != ':');
+        
+        System.out.println("leaving sendCommand()");
+    }
+    
+    /**
+     * @param id Valid values are 0, 1, 2
+     */
+    @Override
+    public void setLanguage(int id)
+    {
+        String command = "L" + id;
+        
+        sendCommand(command);
+    }    
+    
     @Override
     public void setSpeakingRate(int rate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @param id valid values are 0-8
+     */
     @Override
-    public void setVoice(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setVoice(int id) 
+    {
+        String command = "N" + id;
+        
+        sendCommand(command);
     }
 
     @Override
-    public void stop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void stop() 
+    {
+        String command = "X";
+                
+        sendCommand(command);
     }
 
     /**
@@ -135,6 +217,5 @@ public class Pi4JEmic2 implements TextToSpeech
         while (serial.read() != ':');
         
         System.out.println("leaving singSong()");
-    }
-    
+    }    
 }

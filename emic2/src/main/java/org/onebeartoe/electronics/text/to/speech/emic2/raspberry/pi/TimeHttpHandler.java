@@ -2,31 +2,25 @@
 package org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi;
 
 import com.sun.net.httpserver.HttpExchange;
-import java.net.URI;
+import java.util.Calendar;
 import org.onebeartoe.text.to.speech.TextToSpeech;
 
 /**
  * @author Roberto Marquez
  */
-public class SpeakHttpHandler extends Emic2HttpHandler
+public class TimeHttpHandler extends Emic2HttpHandler
 {
-    public SpeakHttpHandler(TextToSpeech emic2)
+    public TimeHttpHandler(TextToSpeech emic2)
     {
         super(emic2);
     }
     
     @Override
     protected String getHttpText(HttpExchange exchange)
-    {
-        URI requestURI = exchange.getRequestURI();
-
-        String text = requestURI.getQuery();
+    {        
+        String spokenTime = emic2.currentTime();
         
-        System.out.println("playing: " + text);
-        
-        emic2.speak(text);
-        
-        String response = " played: " + text;
+        String response = "date spoken: " + spokenTime;
         
         System.out.println(response);
         

@@ -58,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.onebeartoe.electronics.text.to.speech.emic2.ports.OoPi4JEmic2Demo</mainClass>
+                            <mainClass>org.onebeartoe.electronics.text.to.speech.emic2.raspberry.pi.RaspberryPiEmic2TextToSpeech</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
