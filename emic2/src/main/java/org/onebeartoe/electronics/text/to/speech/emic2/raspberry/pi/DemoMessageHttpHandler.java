@@ -56,7 +56,7 @@ public class DemoMessageHttpHandler extends Emic2HttpHandler
                     }
                     case 2:
                     {
-                        String message = "Yo quiero taco bell!";
+                        String message = "Yo quiero taco bel!";
                         
                         emic2.setLanguage(2);
                         emic2.speak(message);

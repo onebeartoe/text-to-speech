@@ -20,6 +20,8 @@ public interface TextToSpeech
     
     void setVoice(int id);
     
+    void setWordsPerMinute(int rate);
+    
     void speak(String text);
     
     void stop();

@@ -39,6 +39,7 @@ public class RaspberryPiEmic2TextToSpeech
         HttpHandler userInterfaceHttpHander = new ClasspathResourceHttpHandler();
         HttpHandler demoHttpHandler = new DemoMessageHttpHandler(emic2);
         HttpHandler quitHttpHandler = new EndOfRunHttpHandler(server);
+        HttpHandler rateHttpHandler = new WordsPerMinuteHttpHandler(emic2);
         HttpHandler speakHttpHandler = new SpeakHttpHandler(emic2);
         HttpHandler stopPlaybackHttpHandler = new StopPlaybackHttpHandler(emic2);
         HttpHandler timeHttpHandler = new TimeHttpHandler(emic2);
@@ -47,6 +48,7 @@ public class RaspberryPiEmic2TextToSpeech
         server.createContext("/", userInterfaceHttpHander);
         server.createContext("/demo/", demoHttpHandler);
         server.createContext("/quit", quitHttpHandler);
+        server.createContext("/rate/", rateHttpHandler);
         server.createContext("/speak", speakHttpHandler);
         server.createContext("/stop", stopPlaybackHttpHandler);
         server.createContext("/time", timeHttpHandler);
