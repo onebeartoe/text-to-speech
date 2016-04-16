@@ -1,0 +1,26 @@
+
+This project uses the following hardware:
+
+
+	Raspberry Pi
+	
+	
+	Emic 2 Text-to-Speech module
+	
+	
+		Adafruit: https://www.adafruit.com/product/924
+	
+		Sparkfun: https://www.sparkfun.com/products/11711
+		
+		
+Wire the emic module to the Raspberry Pi as follows
+
+5V -> 5V
+GND -> ground
+SOUT -> serial in pin* 
+SIN -> serial out pin*
+
+
+* Looking down at the Raspberry Pi, with SD card oriented on the top,
+	  the serial  in pin is 5th down on the right side of the GPIO header and
+	  the serial out pin is 4th down on the right side of the GPIO header.		
