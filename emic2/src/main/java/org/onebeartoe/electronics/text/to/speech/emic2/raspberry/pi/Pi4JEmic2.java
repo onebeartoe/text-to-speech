@@ -87,7 +87,17 @@ public class Pi4JEmic2 implements TextToSpeech
 
         System.out.println("done playing audio");
 
-        while (serial.read() != ':');   // Wait here until the Emic 2 responds with a ":" indicating it's ready to accept the next command
+        int count = 0;
+        while (serial.read() != ':')
+        {
+            // Wait here until the Emic 2 responds with a ":" indicating it's ready to accept the next command
+            
+            if(count > 100)
+            {
+                break;
+            }
+            count++;
+        }   
     }
 
     @Override
@@ -157,10 +167,19 @@ public class Pi4JEmic2 implements TextToSpeech
         }
         
         serial.write(command.getBytes());
+        serial.flush();
         
         System.out.println("sending command done: " + command);
         
-        while (serial.read() != ':');
+        int count = 0;
+        while (serial.read() != ':')
+        {
+            if(count > 100)
+            {
+                break;
+            }
+            count++;
+        }
         
         System.out.println("leaving sendCommand()");
     }
@@ -177,7 +196,8 @@ public class Pi4JEmic2 implements TextToSpeech
     }    
     
     @Override
-    public void setSpeakingRate(int rate) {
+    public void setSpeakingRate(int rate) 
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -214,8 +234,22 @@ public class Pi4JEmic2 implements TextToSpeech
         serial.write(command.getBytes());
         System.out.println("singing song done");
         
-        while (serial.read() != ':');
+        int count = 0;
+        while (serial.read() != ':')
+        {
+            if(count > 100)
+            {
+                break;
+            }
+            count++;
+        };
         
         System.out.println("leaving singSong()");
     }    
+
+    @Override
+    public void setWordsPerMinute(int rate) 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
