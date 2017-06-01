@@ -9,11 +9,14 @@
     <version>0.0.1-SNAPSHOT</version>
     
     <packaging>jar</packaging>
-    
+
+    <name>onebeartoe-text-to-speech-emic2-raspberry-pi</name>
+        
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <text.to.speech.implementation>festivvvvval</text.to.speech.implementation>
     </properties>
     
     <dependencies>
@@ -39,7 +42,7 @@
         </dependency>
         
         <dependency>
-            <groupId>org.onebeartoe.network</groupId>
+            <groupId>org.onebeartoe</groupId>
             <artifactId>network</artifactId>
             <version>1.0-SNAPSHOT</version>            
         </dependency>
@@ -48,10 +51,32 @@
             <groupId>org.rxtx</groupId>
             <artifactId>rxtx</artifactId>
             <version>2.1.7</version>
-        </dependency> 
+        </dependency>
+        
+       	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring</artifactId>
+		<version>2.5</version>
+	</dependency>          
     </dependencies>
     
+    <profiles>
+        <profile>
+            <id>festival</id>
+            <properties>
+                <text.to.speech.implementation>festival</text.to.speech.implementation>
+            </properties>
+        </profile>
+    </profiles>
+    
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -77,5 +102,4 @@
             </plugin>
         </plugins>            
     </build>
-    <name>onebeartoe-text-to-speech-emic2-raspberry-pi</name>
 </project>
