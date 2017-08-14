@@ -13,8 +13,8 @@
     <name>onebeartoe-text-to-speech-emic2-raspberry-pi</name>
         
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <text.to.speech.implementation>festivvvvval</text.to.speech.implementation>
     </properties>
@@ -100,6 +100,17 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <groupId>org.rogueware.mojo</groupId>
+                <artifactId>ssh-exec-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <sshHost>raspberry.local</sshHost>
+                    <sshUsername>pi</sshUsername>
+                    <sshPassword>raspberry</sshPassword>
+                </configuration>
+            </plugin>            
         </plugins>            
     </build>
 </project>
