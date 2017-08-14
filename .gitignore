@@ -1,4 +1,6 @@
 **/nb-configuration.xml
+**/nbactions.xml
+**/nbactions-festival.xml
 target/
 pom.xml.tag
 pom.xml.releaseBackup
