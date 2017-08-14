@@ -10,7 +10,7 @@ import org.onebeartoe.system.Sleeper;
 import org.onebeartoe.text.to.speech.TextToSpeech;
 
 /**
- * @author lando
+ * @author Roberto Marquez
  */
 public class Pi4JEmic2 implements TextToSpeech
 {

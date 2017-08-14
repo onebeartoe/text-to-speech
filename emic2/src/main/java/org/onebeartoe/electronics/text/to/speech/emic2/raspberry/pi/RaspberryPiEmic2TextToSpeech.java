@@ -10,8 +10,9 @@ import java.net.InetSocketAddress;
 import java.util.Properties;
 import org.onebeartoe.network.ClasspathResourceHttpHandler;
 import org.onebeartoe.network.EndOfRunHttpHandler;
+import org.onebeartoe.text.to.speech.FiestaTextToSpeech;
 import org.onebeartoe.text.to.speech.TextToSpeech;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.onebeartoe.text.to.speech.TextToSpeechImplementations;
 
 /**
  * @author Roberto Marquez
@@ -30,7 +31,7 @@ public class RaspberryPiEmic2TextToSpeech
         InputStream ras = getClass().getResourceAsStream("/application.properties");            
         Properties properties = new Properties();
         properties.load(ras);
-        String impl = properties.getProperty("textToSpeach.implementation");
+        String impl = properties.getProperty("textToSpeech.implementation");
         System.out.println("the text to speech implementation is " + impl);        
         
         if(osName.contains("Mac") ||
@@ -40,16 +41,20 @@ public class RaspberryPiEmic2TextToSpeech
         }
         else
         {
-//TODO: add a switch here to use another (Festival) implementation
-                    
-                String [] contextPaths = {"data-persistance-context.xml",
-                                          "services-context.xml"};
-                
-//                ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(contextPaths);
-//                
-//                megaService = (MegaMillionsService) applicationContext.getBean("megaMillionsService");                    
-//(TextToSpeech)                    
-            emic2 = new Pi4JEmic2();
+            TextToSpeechImplementations implType = TextToSpeechImplementations.valueOf(impl);
+            switch(implType)
+            {
+                case EMIC2:
+                {
+                    emic2 = new Pi4JEmic2();
+                    break;
+                }
+                case FESTIVAL:
+                {
+                    emic2 = new FiestaTextToSpeech();
+                    break;
+                }
+            }            
         }
 
         InetSocketAddress anyhost = new InetSocketAddress(2110);        
