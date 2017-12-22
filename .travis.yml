@@ -1,5 +1,5 @@
 
-language: java
+#language: java
 
 script:
 - export path1=some-value
