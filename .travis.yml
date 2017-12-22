@@ -13,6 +13,7 @@ install:
 - ls -ltrh /usr/local/share/fonts/
 - ls -ltrh /usr/share/fonts/
 - echo $path1
+- fc-list | grep -i auhaus
 
 script:
 - echo $path1
