@@ -4,5 +4,5 @@
 script:
 - export path1=some-value
 - ls -ltrh /usr/local/share/fonts/
-- ll -ltrh /usr/share/fonts/
+- ls -ltrh /usr/share/fonts/
 - echo $path1
